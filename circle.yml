@@ -2,7 +2,7 @@ version: 2
 
 jobs:
    build:
-      working_directory: ~/microservice-ref
+      working_directory: ~/gwt-server
       machine:
          enabled: true
       steps:
@@ -15,10 +15,10 @@ jobs:
             path: build/test-results/test
          - run:
             name: Build Docker Container
-            command: docker build --rm=false -t lucksolutions/microservice-ref .
+            command: docker build --rm=false -t lucksolutions/gwt-server .
          - run:
             name: Push Docker Container
             command: |
                docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-               docker push lucksolutions/microservice-ref
+               docker push lucksolutions/gwt-server
             
