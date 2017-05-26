@@ -88,7 +88,7 @@ jsonSchema2Pojo {
 	sourceType = 'jsonschema'
 	source = files("${sourceSets.main.output.resourcesDir}/schema")
 	targetDirectory = file("${project.buildDir}/generated-sources/js2p")
-	targetPackage = 'com.lucksolutions.service.api'
+	targetPackage = 'com.lucksolutions.gwt.api'
 	includeJsr303Annotations = true
 	classNameSuffix = "v1"
 	//serializable = true

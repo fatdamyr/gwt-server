@@ -8,30 +8,77 @@
 			"description": "unique identifier for the game instance",
 			"type": "string"
 		},
-		"name": {
-			"description": "Name of the game instance. Determined by the creator",
-			"type": "string"
-		},
-		"age": {
-			"description": "Age in years",
-			"type": "integer",
-			"minimum": 0
-		}
+		"playerBoard": { "$ref": "#/definitions/playerBoard" }
 	},
 	"required": [
-		"firstName",
-		"lastName"
+		"id",
+		"name"
 	],
 
 	"definitions": {
 		"playerBoard": {
 			"type": "object",
 			"properties": {
-				"auxMoney2": {
-					"description": "Second money auxilary action",
-					"type": "boolean"
+				"auxMoney": {
+					"description": "Money auxilary action",
+					"$ref": "#/definitions/auxillaryAction"
+				},
+				"auxLoot": {
+					"description": "Draw/discard auxilary action",
+					"$ref": "#/definitions/auxillaryAction"
+				},
+				"auxCertificate": {
+					"description": "Move train back, gain a certificate auxilary action",
+					"$ref": "#/definitions/auxillaryAction"
+				},
+				"auxTrain": {
+					"description": "Move train forward auxilary action",
+					"$ref": "#/definitions/auxillaryAction"
+				},
+				"auxDestroyCard": {
+					"description": "Move train backward, destroy card auxilary action",
+					"$ref": "#/definitions/auxillaryAction"
+				},
+				"movement": {
+					"description": "Amount of movement the player has",
+					"type": "integer",
+					"minimum": 3,
+					"maximum": 5,
+					"default": 3
+				},
+				"handSize": {
+					"description": "Amount of cards the player can hold in their hand",
+					"type": "integer",
+					"minimum": 4,
+					"maximum": 6,
+					"default": 4
+				},
+				"certificates": {
+					"description": "Amount of certificates the player has",
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 6,
+					"default": 0
+				},
+				"forthCertificate": {
+					"description": "Has the player unlocked the 4th certificate space",
+					"type": "boolean",
+					"default": false
+				},
+				"sixthCertificate": {
+					"description": "Has the player unlocked the 4th certificate space",
+					"type": "boolean",
+					"default": false
 				}
 			}
+		},
+
+		"auxillaryAction": {
+			"javaType" : "com.lucksolutions.gwt.api.AuxillaryAction",
+			"title": "auxillaryAction",
+			"type": "string",
+			"enum": ["UNAVAILABLE", "ONE_ACTION", "TWO_ACTIONS"],
+			"default": "UNAVAILABLE"
 		}
 	}
 }
